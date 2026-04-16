@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CodeMonkey.Utils;
+using TMPro;
 
 public class GraphDisplay : MonoBehaviour
 {
@@ -10,6 +11,14 @@ public class GraphDisplay : MonoBehaviour
     private Sprite grafTocka;
     [SerializeField]
     private RectTransform graphContainer;
+
+    [SerializeField]
+    private RectTransform labelTemplateX;
+    [SerializeField]
+    private RectTransform labelTemplateY;
+
+    [SerializeField]
+    private RectTransform graphOuter;
 
     private GameObject NarisiTockoGrafa(Vector2 anchoredPosition)
     {
@@ -41,7 +50,26 @@ public class GraphDisplay : MonoBehaviour
                 PoveziTockeGrafa(lastCircleGameObject.GetComponent<RectTransform>().anchoredPosition, CircleGameObject.GetComponent<RectTransform>().anchoredPosition);
             }
             lastCircleGameObject = CircleGameObject;
+
+            /*RectTransform labelX = Instantiate(labelTemplateX);
+            labelX.SetParent(graphOuter);
+            labelX.gameObject.SetActive(true);
+            labelX.anchoredPosition = new Vector2(xPosition, -20f);
+            labelX.GetComponent<TMP_Text>().text = i.ToString();*/
         }
+
+        int separatorCount = 10;
+
+        for (int i = 0; i <= separatorCount; i++)
+        {
+            RectTransform labelY = Instantiate(labelTemplateY);
+            labelY.SetParent(graphOuter);
+            labelY.gameObject.SetActive(true);
+            float normalizedValue = i * 1f / separatorCount;
+            labelY.anchoredPosition = new Vector2(960f, normalizedValue * graphHeight);
+            labelY.GetComponent<TMP_Text>().text = Mathf.RoundToInt (normalizedValue * yMaximum).ToString();
+        }
+
     }
 
     private void PoveziTockeGrafa(Vector2 dotPositionA, Vector2 dotPositionB)
