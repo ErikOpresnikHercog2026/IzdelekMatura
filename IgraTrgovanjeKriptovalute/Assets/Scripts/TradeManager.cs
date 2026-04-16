@@ -5,7 +5,22 @@ using TMPro;
 
 public class TradeManager : MonoBehaviour
 {
-    public List<int> VrednostiCryptoValute;
+    [SerializeField]
+    public static List<int> VrednostiCryptoValute = new List<int>
+    {
+    17,15,20,35,30,54,56,58,57,59,60,62,61,63,65,64,66,68,70,69,
+    71,73,75,74,76,78,80,79,77,76,78,81,83,85,84,86,88,90,89,87,
+    85,83,82,80,78,76,74,72,70,68,66,65,63,61,60,58,56,55,53,52,
+    50,48,47,45,44,42,40,38,37,35,33,31,30,28,27,25,24,22,21,20,
+    22,24,26,28,30,32,35,37,39,41,43,45,47,49,52,54,56,58,60,63,
+    65,67,69,72,74,76,78,80,83,85,87,89,91,93,95,97,96,94,92,90,
+    88,86,84,82,80,78,76,74,72,70,68,66,64,62,60,58,56,54,52,50,
+    48,46,44,42,40,38,36,34,32,30,28,26,24,22,20,18,16,15,14,13,
+    15,17,19,22,24,27,29,32,35,37,40,43,45,48,50,53,56,58,61,64,
+    67,69,72,75,78,80,83,86,88,91,94,96,98,97,95,93,91,89,87,85,
+    83,81,79,77,75,73,71,69,67,65,63,61,59,57,55,53,51,49,47,45,
+    43,41,39,37,35,33,31,29,27,25,23,21,20,19,18,17,16,15,14,13,
+    };
 
     private bool CanUpdatePrices = true;
 
@@ -68,7 +83,7 @@ public class TradeManager : MonoBehaviour
         StanjeCrypto = Mathf.RoundToInt((VrednostCryptoValute * StanjeCrypto) / PrejsnaVrednostCryptoValute);
 
         PrejsnaVrednostCryptoValute = VrednostCryptoValute;
-
+        
         UpdateTexts();
 
         CanUpdatePrices = true;
